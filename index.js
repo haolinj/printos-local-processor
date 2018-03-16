@@ -68,6 +68,15 @@ function start(args) {
     }
   });
 
+  jobs.startJobNotifications(thingName, function (err) {
+    if (isUndefined(err)) {
+      console.log('Job notifications initiated for Thing: ' + thingName);
+    }
+    else {
+      console.error(err);
+    }
+  });
+
   const minimumDelay = 5000;
 
   // Health check.
