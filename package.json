@@ -1,0 +1,21 @@
+{
+  "name": "printos-local-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Haolin Jiang",
+  "license": "ISC",
+  "dependencies": {
+    "aws-amplify": "^0.2.9",
+    "aws-iot-device-sdk": "^2.2.1",
+    "aws-sdk": "^2.210.0",
+    "express": "^4.16.3",
+    "lodash": "^4.17.5",
+    "query-string": "^5.0.1",
+    "request": "^2.85.0",
+    "urlencode": "^1.1.0"
+  }
+}
