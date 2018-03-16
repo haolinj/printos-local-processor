@@ -24,6 +24,7 @@ var printJobs = {
 var activeJobs = {};
 
 const thingName = 'printos';
+const statusReportTopic = 'topic/print/brod_kingston/status'
 
 function start(args) {
 
@@ -51,14 +52,12 @@ function start(args) {
 
   jobs.subscribeToJobs(thingName, function (err, job) {
     if (isUndefined(err)) {
-      console.log('customJob operation handler invoked, jobId: ' + job.id.toString());
-      console.log('job document: ', job.document);
+      console.log('Print job: ', job.document);
 
       const { id, data } = job.document;
 
       printJobs.ids.push(id);
       printJobs.data.push(data);
-
       activeJobs[id] = job;
 
       job.inProgress();
@@ -69,20 +68,11 @@ function start(args) {
     }
   });
 
-  jobs.startJobNotifications(thingName, function (err) {
-    if (isUndefined(err)) {
-      console.log('job notifications initiated for thing: ' + thingName);
-    }
-    else {
-      console.error(err);
-    }
-  });
-
   const minimumDelay = 5000;
 
   // Health check.
   const timeout = setInterval(function () {
-    device.publish('topic/print/brod_kingston/hc', JSON.stringify({
+    device.publish(statusReportTopic, JSON.stringify({
       status: 'OK',
       timestamp: new Date().valueOf()
     }));
