@@ -1,0 +1,19 @@
+# requires: Nodejs/NPM, PowerShell
+# Permission to run PS scripts (for this session only):
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+
+# exit if cmdlet gives error.
+$ErrorActionPreference = "Stop"
+
+# Check to see if root CA file exists, download if not.
+If (!(Test-Path ".\root-CA.crt")) {
+  "`nDownloading AWS IoT Root CA certificate from Symantec..."
+  Invoke-WebRequest -Uri [uri for the root-CA] -OutFile root-CA.crt
+}
+
+If (!(Test-Path ".\node_modules")) {
+    "`nInstalling dependencies..."
+    npm install
+}
+
+node index.js --host-name=[hostname] --private-key=[path] --client-certificate=[path] --ca-certificate=[path]

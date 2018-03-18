@@ -9,6 +9,7 @@
   "author": "Haolin Jiang",
   "license": "ISC",
   "dependencies": {
+    "args-parser": "^1.1.0",
     "aws-amplify": "^0.2.9",
     "aws-iot-device-sdk": "^2.2.1",
     "aws-sdk": "^2.210.0",

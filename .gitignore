@@ -57,6 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
-iot/
+config/*.key
+config/*.js
+config/*.pem
 start.ps1
 *.crt
